@@ -1,0 +1,100 @@
+@use "normalize" as n;
+
+@mixin button-s {
+  padding: 0.3rem 0.5rem;
+  background: black;
+  color: n.$gold;
+  border-left: 0.5px outset rgba(240, 234, 234, 0.527);
+  border-top: 0.5px outset rgba(240, 234, 234, 0.527);
+  border-right: none;
+  border-bottom: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(240, 234, 234, 0.527);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+}
+
+@mixin button-s-hover {
+  background: n.$gold;
+  color: n.$gray;
+}
+
+@mixin button-xs {
+  padding: 0.3rem;
+  background: black;
+  color: n.$gold;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1.5px 1.5px 3px rgba(240, 234, 234, 0.527);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+@mixin button-xs-hover {
+  background: n.$gold;
+  color: n.$gray;
+  cursor: pointer;
+}
+
+@mixin nav-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: n.$gold;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@mixin nav-btn-hover {
+  background-color: black;
+  color: n.$gold;
+  cursor: pointer;
+}
+
+@mixin shopping-cart {
+  z-index: 999;
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  width: 90%;
+  min-height: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem 0.5rem;
+  background-color: black;
+  color: n.$gray;
+  border: 2px solid n.$gold;
+  border-radius: 10px;
+}
+
+@mixin font-size-m {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  a {
+    font-size: 16px;
+  }
+}
