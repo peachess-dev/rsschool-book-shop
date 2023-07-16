@@ -55,9 +55,21 @@ headerTickerContainer.className = "header__ticker__container";
 
 const headerTicker = document.createElement("div");
 headerTicker.className = "header__ticker";
-headerTicker.innerHTML =
-  "<div class='ticker__item'><p>Free shipping from &euro;100</p></div> <div class='ticker__item'><p>Every purchase supports independent bookstores</p></div>";
 
+const tickerList = document.createElement("div");
+tickerList.className = "ticker__list";
+
+const tickerItem1 = document.createElement("div");
+tickerItem1.className = "ticker__item";
+tickerItem1.innerHTML = "<p>Free shipping from &euro;100</p>";
+
+const tickerItem2 = document.createElement("div");
+tickerItem2.className = "ticker__item";
+tickerItem2.innerHTML = "<p>Every purchase supports independent bookstores</p>";
+
+tickerList.append(tickerItem1, tickerItem2);
+
+headerTicker.append(tickerList);
 headerTickerContainer.append(headerTicker);
 headerContainer.append(headerTickerContainer);
 
@@ -121,6 +133,10 @@ cart.addEventListener("click", () => {
   }
 });
 
+//
+const payRow = document.createElement("div");
+payRow.classList = "pay-row";
+
 // total sum section
 let totalSum = 0;
 const total = document.createElement("div");
@@ -132,7 +148,8 @@ const checkout = document.createElement("button");
 checkout.className = "checkout-btn";
 checkout.innerHTML = "proceed checkout";
 
-shoppingCart.append(total, checkout);
+payRow.append(total, checkout);
+shoppingCart.append(payRow);
 
 // NAVIGATION BAR
 const navContainer = document.createElement("div");
@@ -295,16 +312,6 @@ function appendData(data) {
     cartRowTitle.className = "cart-row-title";
     cartRowTitle.innerHTML = data[i].title;
 
-    const cartRowQty = document.createElement("input");
-    cartRowQty.className = "cart-row-qty";
-    cartRowQty.setAttribute("type", "number");
-    cartRowQty.setAttribute("step", "1");
-    cartRowQty.setAttribute("min", "1");
-    cartRowQty.setAttribute("max", "5");
-    cartRowQty.innerHTML = cartRowQty.value;
-    // cartRowQty.value = 1;
-    // cartRowQty.innerHTML = updateTotalQty();
-
     const cartRowPrice = document.createElement("h2");
     cartRowPrice.className = "cart-row-price";
     cartRowPrice.innerHTML = data[i].price + "$";
@@ -318,7 +325,7 @@ function appendData(data) {
 
     function addToCart() {
       shoppingCart.appendChild(cartRow);
-      cartRowDiv.append(cartRowTitle, cartRowQty, cartRowPrice);
+      cartRowDiv.append(cartRowTitle, cartRowPrice);
       cartRow.append(cartRowDiv, cartDeleteBtn);
 
       // shopping cart delete items
@@ -327,16 +334,7 @@ function appendData(data) {
         reduceTotalSum();
       });
 
-      updateTotalQty();
-
       updateTotalSum();
-    }
-
-    // total quantity
-    function updateTotalQty() {
-      let quantity = new Array(data[i].author);
-      cartRowQty.innerHTML = `${quantity.length}`;
-      console.log(cartRowQty);
     }
 
     //update total sum
@@ -380,31 +378,23 @@ footerBot.innerHTML =
 
 footerContainer.append(footerTop, footerMiddle, footerBot);
 
-//FUNCTIONS
+// TICKER ANIMATION
+const tickerItems = tickerList.getElementsByClassName("ticker__item");
+const tickerWidth = tickerList.offsetWidth;
+let translateXValue = 0;
+let animationRequestId = null;
 
 function tickerAnimation() {
-  const tickerContainer = document.querySelector(".header__ticker__container");
-  const ticker = document.querySelector(".header__ticker");
-  const tickerItems = document.querySelectorAll(".ticker__item");
+  translateXValue -= 1;
+  tickerList.style.transform = `translateX(${translateXValue}px)`;
 
-  let tickerWidth = 0;
-  tickerItems.forEach((item) => {
-    tickerWidth += item.offsetWidth + 10; // Consider margin-right value
-  });
-
-  ticker.style.width = tickerWidth + "px";
-  console.log(tickerWidth);
-
-  function animate() {
-    if (tickerContainer.scrollLeft >= tickerWidth) {
-      tickerContainer.scrollLeft = 0;
-    } else {
-      tickerContainer.scrollLeft += 1;
-    }
-    requestAnimationFrame(animate);
+  if (Math.abs(translateXValue) >= tickerItems[0].offsetWidth) {
+    tickerList.appendChild(tickerItems[0].cloneNode(true));
+    tickerItems[0].remove();
+    translateXValue = 0;
   }
-  requestAnimationFrame(animate);
-  // setInterval(animate, 30); // Adjust the speed as needed
+
+  animationRequestId = requestAnimationFrame(tickerAnimation);
 }
 
-tickerAnimation();
+requestAnimationFrame(tickerAnimation);

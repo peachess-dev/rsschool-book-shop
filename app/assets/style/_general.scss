@@ -5,91 +5,98 @@
 HEADER
 ********/
 
-header .inner__container {
-  // width: 100%;
-  // justify-content: space-between;
-  // align-items: center;
-  overflow: hidden;
-  gap: 1.5rem;
+header {
+  width: 100%;
+  .inner__container {
+    gap: 1.5rem;
 
-  .header__ticker__container {
-    grid-row: 1/2;
-    grid-column: span 12;
-    display: flex;
-    flex-wrap: nowrap;
-    margin-bottom: 1rem;
-    color: n.$gray;
+    .header__ticker__container {
+      grid-row: 1/2;
+      grid-column: span 12;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      color: n.$gray;
 
-    .header__ticker {
-      display: flex;
-      flex-wrap: nowrap;
-
-      .ticker__item {
-        display: flex;
-        flex-wrap: nowrap;
-        margin-right: 1rem;
-      }
-    }
-  }
-
-  .header__logo {
-    grid-row: 2/3;
-    grid-column: span 10;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    .logo__img {
-      max-width: 1.5rem;
-      height: auto;
-      img {
+      .header__ticker {
         width: 100%;
+        display: flex;
+        overflow: hidden;
+
+        .ticker__list {
+          display: flex;
+          justify-content: flex-start;
+          white-space: nowrap;
+          margin-top: 20px;
+
+          .ticker__item {
+            display: flex;
+            margin-right: 1rem;
+            width: 100%;
+          }
+        }
       }
     }
-  }
 
-  .header__search {
-    grid-row: 3/4;
-    grid-column: span 12;
-    display: flex;
-    gap: 0.5rem;
+    .header__logo {
+      grid-row: 2/3;
+      grid-column: span 8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
 
-    .search__bar {
-      flex-basis: 100%;
-      height: 2rem;
-      background-color: n.$gray;
-      color: black;
-      border: 1px solid n.$gold;
-      border-radius: 5px;
+      .logo__img {
+        max-width: 1.5rem;
+        height: auto;
+        img {
+          width: 100%;
+        }
+      }
     }
 
-    .search__icon {
-      @include m.button-s;
-    }
-    .search__icon:hover {
-      @include m.button-s-hover;
-    }
-  }
+    .header__search {
+      grid-row: 3/4;
+      grid-column: span 12;
+      display: flex;
+      gap: 0.5rem;
 
-  .header__info {
-    grid-row: 2/3;
-    grid-column: span 2;
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
+      .search__bar {
+        flex-basis: 100%;
+        height: 2rem;
+        background-color: n.$gray;
+        color: black;
+        border: 1px solid n.$gold;
+        border-radius: 5px;
+      }
 
-    .user {
-      @include m.button-s;
-    }
-    .user:hover {
-      @include m.button-s-hover;
+      .search__icon {
+        @include m.button-s;
+      }
+      .search__icon:hover {
+        @include m.button-s-hover;
+      }
     }
 
-    .cart {
-      @include m.button-s;
-    }
-    .cart:hover {
-      @include m.button-s-hover;
+    .header__info {
+      position: relative;
+      grid-row: 2/3;
+      grid-column: span 4;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+
+      .user {
+        @include m.button-s;
+      }
+      .user:hover {
+        @include m.button-s-hover;
+      }
+
+      .cart {
+        @include m.button-s;
+      }
+      .cart:hover {
+        @include m.button-s-hover;
+      }
     }
   }
 }
@@ -97,7 +104,9 @@ header .inner__container {
 /* shopping cart */
 .header__shopping-cart {
   @include m.shopping-cart;
-
+  width: calc(100% - 2rem);
+  top: 5%;
+  right: 0;
   .cart-row {
     width: 100%;
     display: flex;
@@ -107,8 +116,8 @@ header .inner__container {
     .cart-row-div {
       width: 100%;
       display: flex;
-      justify-content: space-evenly;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: flex-start;
       gap: 1rem;
 
       .cart-row-title {
@@ -122,11 +131,8 @@ header .inner__container {
         width: 40%;
       }
 
-      .cart-row-qty {
-        margin-left: auto;
-      }
-
       .cart-row-price {
+        margin-left: auto;
         font-size: 0.8rem;
       }
     }
@@ -140,15 +146,19 @@ header .inner__container {
     }
   }
 
+  .pay-row {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
   .sum-total {
-    position: absolute;
-    top: 80%;
     text-transform: uppercase;
   }
 
   .checkout-btn {
-    position: absolute;
-    top: 90%;
     @include m.button-s;
   }
 
@@ -161,8 +171,7 @@ header .inner__container {
 NAVIGATION
 **********/
 nav {
-  // background-color: n.$gold;
-
+  width: 100%;
   .inner__container {
     .nav-btn {
       grid-column: span 12;
@@ -294,17 +303,20 @@ main .inner__container {
 /*******
 FOOTER SECTION
 ********/
-footer .inner__container {
-  color: n.$gray;
-  padding-top: 4rem;
-  gap: 2rem;
+footer {
+  width: 100%;
+  .inner__container {
+    color: n.$gray;
+    padding-top: 4rem;
+    gap: 2rem;
 
-  .footer__top {
-    grid-column: span 12;
-  }
-  .flex-column {
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
+    .footer__top {
+      grid-column: span 12;
+    }
+    .flex-column {
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
   }
 }

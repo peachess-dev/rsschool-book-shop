@@ -49,6 +49,10 @@
   cursor: pointer;
 }
 
+@mixin nav-btn-l {
+  padding: 0.8rem 1rem;
+}
+
 @mixin nav-btn-hover {
   background-color: black;
   color: n.$gold;
@@ -58,12 +62,9 @@
 @mixin shopping-cart {
   z-index: 999;
   position: absolute;
-  top: 40%;
-  left: 5%;
-  width: 90%;
-  min-height: 50%;
+  min-height: 10rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 2rem;
   padding: 1.5rem 0.5rem;
   background-color: black;
@@ -97,4 +98,11 @@
   a {
     font-size: 16px;
   }
+}
+
+@mixin user-info-column {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  gap: 0.5rem;
 }
