@@ -1,0 +1,91 @@
+@use "normalize" as n;
+@use "mixins" as m;
+
+.container {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  color: n.$gold;
+}
+
+#order_form {
+  padding: 2rem 1rem;
+  margin: 0 auto;
+  gap: 1.5rem;
+  color: n.$gray;
+
+  h4 {
+    color: n.$gold;
+  }
+  input {
+    background-color: n.$gold;
+  }
+  .button {
+    text-align: center;
+    #complete-btn {
+      @include m.button-s;
+    }
+    #complete-btn:hover {
+      @include m.button-s-hover;
+    }
+    #complete-btn:disabled:hover {
+      @include m.button-s;
+      cursor: default;
+    }
+  }
+  .user-info__field {
+    @include m.user-info-column;
+  }
+  .pay-options {
+    @include m.user-info-column;
+    align-items: flex-start;
+    div {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 0.2rem;
+    }
+  }
+  .gift-options {
+    @include m.user-info-column;
+    align-items: flex-start;
+
+    div {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 0.2rem;
+    }
+  }
+}
+
+.order_confirm {
+  position: absolute;
+  top: 25%;
+  height: 50vh;
+  display: flex;
+  align-items: flex-start;
+  background: black;
+  padding: 1rem;
+  gap: 1rem;
+
+  .orderConfirm__info {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+
+  .orderConfirm__btn {
+    @include m.button-s;
+  }
+
+  .orderConfirmOk__btn {
+    @include m.button-s;
+    margin-top: 3rem;
+    align-self: center;
+  }
+}
+
+// .blur {
+
+// }
